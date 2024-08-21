@@ -1,48 +1,33 @@
-# Source Engine
-[![GitHub Actions Status](https://github.com/nillerusr/source-engine/actions/workflows/build.yml/badge.svg)](https://github.com/nillerusr/source-engine/actions/workflows/build.yml) [![GitHub Actions Status](https://github.com/nillerusr/source-engine/actions/workflows/tests.yml/badge.svg)](https://github.com/nillerusr/source-engine/actions/workflows/tests.yml)
- Discord: [![Discord Server](https://img.shields.io/discord/672055862608658432.svg)](https://discord.gg/hZRB7WMgGw)
- 
+# Source Engine: Community Edition
 
-Information from [wikipedia](https://wikipedia.org/wiki/Source_(game_engine)):
+[![Build Status](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/build.yml/badge.svg)](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/build.yml) [![Test Status](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/tests.yml/badge.svg)](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/tests.yml)
 
-Source is a 3D game engine developed by Valve.
-It debuted as the successor to GoldSrc with Half-Life: Source in June 2004,
-followed by Counter-Strike: Source and Half-Life 2 later that year.
-Source does not have a concise version numbering scheme; instead, it was released in incremental versions
+## Overview
 
-Source code is based on TF2 2018 leak. Don't use it for commercial purposes.
+Welcome to the **Source Engine: Community Edition**, an open-source initiative based on the 2018 leaked source code of *Team Fortress 2*. This project serves as a learning platform for C++ development and game engine architecture, primarily focusing on the famous Source Engine developed by Valve. The engine, which succeeded GoldSrc, first appeared with *Half-Life: Source* in June 2004 and was later used in popular titles like *Counter-Strike: Source* and *Half-Life 2*.
 
-This project is using waf buildsystem. If you have waf-related questions look https://waf.io/book
+This project is for **educational purposes only**. As I am still learning, there might be some mistakes in the codebase. Contributions, feedback, and maintenance help from the community are highly encouraged and deeply appreciated.
 
-# Features:
-- Android, OSX, FreeBSD, Windows, Linux( glibc, musl ) support
-- Arm support( except windows )
-- 64bit support
-- Modern toolchains support
-- Fixed many undefined behaviours
-- Touch support( even on windows/linux/osx )
-- VTF 7.5 support
-- PBR support
-- bsp v19-v21 support( bsp v21 support is partial, portal 2 and csgo maps works fine )
-- mdl v46-49 support
-- Removed useless/unnecessary dependencies
-- Achivement system working without steam
-- Fixed many bugs
-- Serverbrowser works without steam
+> **Important Notice:** This code is provided as-is for learning and experimentation. It is not intended for commercial use, and any commercial application of this code is strictly prohibited.
 
-# Current tasks
-- Rewrite materialsystem for OpenGL render
-- dxvk-native support
-- Elbrus port
-- Bink audio support( for video_bink )
+For a more comprehensive overview of the Source engine, please refer to its [Wikipedia page](https://wikipedia.org/wiki/Source_(game_engine)).
 
-# How to Build?
-- [Building instructions(EN)](https://github.com/nillerusr/source-engine/wiki/Source-Engine-(EN))
-- [Building instructions(RU)](https://github.com/nillerusr/source-engine/wiki/Source-Engine-(RU))
+## Build System
 
-# Support me
-BTC: `bc1qnjq92jj9uqjtafcx2zvnwd48q89hgtd6w8a6na`
+This project currently uses the **WAF build system** to compile and manage the source code. WAF is a powerful and flexible build system designed to handle complex build environments. If you have any questions or run into issues with WAF, I recommend consulting the [WAF Book](https://waf.io/book) for detailed guidance.
 
-ETH: `0x5d0D561146Ed758D266E59B56e85Af0b03ABAF46`
+## Contributing and Feedback
 
-XMR: `48iXvX61MU24m5VGc77rXQYKmoww3dZh6hn7mEwDaLVTfGhyBKq2teoPpeBq6xvqj4itsGh6EzNTzBty6ZDDevApCFNpsJ`
+As this is a learning project, I'm constantly striving to improve the codebase and expand my knowledge. I welcome any contributions, whether it’s fixing bugs, improving documentation, or adding new features. Your feedback and suggestions are invaluable to me, and I would be grateful for any assistance in maintaining and enhancing this project.
+
+## Support the Project
+
+If you’d like to support my work and the continued development of this project, you can do so through the following platforms:
+
+- **[Ko-fi](https://ko-fi.com/mykytashcherbyna)**
+- **[Buy Me a Coffee](https://www.buymeacoffee.com/nsherbina1999)**
+- **[Thanks.dev](https://thanks.dev/nsherbina1999)**
+- **[Patreon](https://www.patreon.com/mykytashcherbyna)**
+- **[PayPal Donation](https://www.paypal.com/donate/?hosted_button_id=9ETHFD5CQZVHL)**
+
+Your support helps me continue learning and contributing to the open-source community.
