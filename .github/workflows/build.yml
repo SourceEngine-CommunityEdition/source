@@ -7,21 +7,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-latest]
-        arch: [i386, amd64]
-        dedicated: [false, true]
-        exclude:
-          - os: ubuntu-20.04
-            arch: i386
-            dedicated: true
-          - os: macos-latest
-            arch: i386
-          - os: ubuntu-20.04
-            arch: amd64
-            dedicated: false
-          - os: macos-latest
-            arch: i386
-            dedicated: true
+        os: [windows-2019]
+        arch: [x86, x64]
 
     steps:
     - uses: actions/checkout@v4
@@ -33,10 +20,9 @@ jobs:
           build
           .waf*
           .lock-waf*
-        key: ${{ runner.os }}-waf-${{ matrix.arch }}-${{ matrix.dedicated }}-${{ github.sha }}
+        key: ${{ runner.os }}-waf-${{ matrix.arch }}-${{ github.sha }}
 
     - name: Cache Submodules
-      if: matrix.os == 'windows-2019'
       uses: actions/cache@v4
       with:
         path: |
@@ -46,25 +32,14 @@ jobs:
           ${{ runner.os }}-submodules-
 
     - name: Setup Submodules
-      if: matrix.os == 'windows-2019'
       run: |
         git submodule init && git submodule update
 
-    - name: Build on Linux or macOS
-      if: matrix.os != 'windows-2019'
-      run: |
-        if [ "${{ matrix.dedicated }}" == "true" ]; then
-          scripts/build-${{ matrix.os == 'macos-latest' && 'macos' || 'ubuntu' }}-${{ matrix.arch }}.sh -d
-        else
-          scripts/build-${{ matrix.os == 'macos-latest' && 'macos' || 'ubuntu' }}-${{ matrix.arch }}.sh
-        fi
-
     - name: Build on Windows
-      if: matrix.os == 'windows-2019'
       run: |
-        if [ "${{ matrix.dedicated }}" == "true" ]; then
-          ./waf.bat configure -T debug --${{ matrix.arch == 'i386' && '32bits' || '' }} -d
+        if [ "${{ matrix.arch }}" == "x86" ]; then
+          ./waf.bat configure -T debug --32bits
         else
-          ./waf.bat configure -T debug --${{ matrix.arch == 'i386' && '32bits' || '' }}
+          ./waf.bat configure -T debug
         fi
         ./waf.bat build
