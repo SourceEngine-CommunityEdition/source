@@ -37,9 +37,10 @@ jobs:
 
     - name: Build on Windows
       run: |
-        if [ "${{ matrix.arch }}" == "x86" ]; then
+        if (${{ matrix.arch }} -eq 'x86') {
           ./waf.bat configure -T debug --32bits
-        else
+        } else {
           ./waf.bat configure -T debug
-        fi
+        }
         ./waf.bat build
+      shell: pwsh
