@@ -5,7 +5,7 @@
 
 ## Overview
 
-Welcome to the **Source Engine: Community Edition**, an open-source project aimed at education and research, inspired by the 2018 leak of *Team Fortress 2*'s source code. The original leak is believed to have occurred privately in 2017 and was made public in 2020. This project serves as a learning platform for C++ development, game engine architecture, and modding, focusing on Valve's iconic Source Engine.
+Welcome to the **Source Engine: Community Edition**, an open-source project aimed at education and research, inspired by the 2017 leak of *Team Fortress 2*'s source code. The original leak is believed to have occurred privately in 2018 and was made public in 2020. This project serves as a learning platform for C++ development, game engine architecture, and modding, focusing on Valve's iconic Source Engine.
 
 The Source Engine, which succeeded GoldSrc, was first introduced with *Half-Life: Source* in June 2004 and was later used in critically acclaimed titles like *Counter-Strike: Source* and *Half-Life 2*. Through this community-driven initiative, developers and enthusiasts can explore and understand the inner workings of one of the most influential game engines in history.
 
