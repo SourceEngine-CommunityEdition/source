@@ -17,10 +17,6 @@ matrix:
     - os: osx
       arch: x86_64
 
-before_install:
-  - git submodule init
-  - git submodule update
-
 script:
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
