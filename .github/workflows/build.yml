@@ -10,11 +10,18 @@ jobs:
         os: [ubuntu-latest, ubuntu-20.04, windows-2019, macos-latest]
         arch: [i386, amd64, armv7a]
         dedicated: [false, true]
+        exclude:
+          - os: macos-latest
+            arch: i386
+          - os: macos-latest
+            arch: armv7a
+          - os: windows-2019
+            arch: armv7a
     steps:
     - uses: actions/checkout@v4
 
     - name: Build on Linux
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'ubuntu-20.04'
+      if: ${{ startsWith(matrix.os, 'ubuntu') }}
       shell: bash
       run: |
         git submodule init && git submodule update
@@ -35,29 +42,29 @@ jobs:
         fi
 
     - name: Build on Windows
-      if: matrix.os == 'windows-2019'
+      if: ${{ matrix.os == 'windows-2019' }}
       shell: powershell
       run: |
         git submodule init && git submodule update
-        if [ "${{ matrix.arch }}" == "i386" ]; then
-          if [ "${{ matrix.dedicated }}" == "true" ]; then
+        if ($env:matrix_arch -eq "i386") {
+          if ($env:matrix_dedicated -eq "true") {
             ./waf.bat configure -T debug --32bits -d
-          else
+          } else {
             ./waf.bat configure -T debug --32bits
-          fi
-        elif [ "${{ matrix.arch }}" == "amd64" ]; then
-          if [ "${{ matrix.dedicated }}" == "true" ]; then
+          }
+        } elseif ($env:matrix_arch -eq "amd64") {
+          if ($env:matrix_dedicated -eq "true") {
             ./waf.bat configure -T debug -d
-          else
+          } else {
             ./waf.bat configure -T debug
-          fi
-        fi
+          }
+        }
         ./waf.bat build
 
     - name: Build on macOS
-      if: matrix.os == 'macos-latest' && matrix.arch == 'amd64'
+      if: ${{ matrix.os == 'macos-latest' && matrix.arch == 'amd64' }}
       run: |
-        if [ "${{ matrix.dedicated }}" == "true" ]; then
+        if [ "${{ matrix.dedicated }}" = "true" ]; then
           scripts/build-macos-amd64.sh -d
         else
           scripts/build-macos-amd64.sh
