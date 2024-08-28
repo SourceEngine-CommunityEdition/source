@@ -4,10 +4,9 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-2019
     strategy:
       matrix:
-        os: [windows-2019]
         arch: [x86, x64]
 
     steps:
@@ -34,6 +33,7 @@ jobs:
     - name: Setup Submodules
       run: |
         git submodule init && git submodule update
+      shell: pwsh
 
     - name: Create Output Directory
       run: |
