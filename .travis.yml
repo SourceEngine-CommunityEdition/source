@@ -1,36 +1,53 @@
 language: bash
 
-os: windows
+os: 
+  - linux
+  - osx
+  - windows
 
-jobs:
-  include:
-    - name: Build x86
-      env: ARCH=x86
-    - name: Build x64
-      env: ARCH=x64
+arch:
+  - amd64
 
-cache:
-  directories:
-    - build
-    - .waf*
-    - .lock-waf*
-    - .git/modules
+env:
+  - DEDICATED=true
+  - DEDICATED=false
+
+matrix:
+  exclude:
+    - os: osx
+      arch: x86_64
 
 before_install:
   - git submodule init
   - git submodule update
 
-install:
-  - |
-    if [ "$ARCH" = "x86" ]; then
-      ./waf.bat configure -T debug --32bits
-    else
-      ./waf.bat configure -T debug
-    fi
-
 script:
-  - ./waf.bat build
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      if [[ "$TRAVIS_ARCH" == "amd64" ]]; then
+        if [[ "$DEDICATED" == "true" ]]; then
+          scripts/build-ubuntu-amd64.sh -d
+        else
+          scripts/build-ubuntu-amd64.sh
+        fi
+      fi
 
-before_cache:
-  - rm -f build/.lock-waf*
-  - rm -f .lock-waf*
+    elif [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+      powershell -Command "
+        if ('$TRAVIS_ARCH' -eq 'amd64') {
+          if ('$DEDICATED' -eq 'true') {
+            ./waf.bat configure -T debug -d
+          } else {
+            ./waf.bat configure -T debug
+          }
+        }
+        ./waf.bat build
+      "
+
+    elif [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_ARCH" == "amd64" ]]; then
+      if [[ "$DEDICATED" == "true" ]]; then
+        scripts/build-macos-amd64.sh -d
+      else
+        scripts/build-macos-amd64.sh
+      fi
+    fi
