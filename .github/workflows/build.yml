@@ -20,6 +20,27 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Cache WAF Build Files
+      uses: actions/cache@v4
+      with:
+        path: |
+          build/
+          .waf*
+          .lock-waf*
+        key: ${{ runner.os }}-waf-${{ matrix.arch }}-${{ matrix.dedicated }}-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-waf-${{ matrix.arch }}-${{ matrix.dedicated }}-
+          ${{ runner.os }}-waf-${{ matrix.arch }}-
+
+    - name: Cache Submodules
+      uses: actions/cache@v4
+      with:
+        path: |
+          .git/modules/
+        key: ${{ runner.os }}-submodules-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-submodules-
+
     - name: Build on Linux
       if: ${{ startsWith(matrix.os, 'ubuntu') }}
       shell: bash
