@@ -1,0 +1,36 @@
+language: bash
+
+os: windows
+
+jobs:
+  include:
+    - name: Build x86
+      env: ARCH=x86
+    - name: Build x64
+      env: ARCH=x64
+
+cache:
+  directories:
+    - build
+    - .waf*
+    - .lock-waf*
+    - .git/modules
+
+before_install:
+  - git submodule init
+  - git submodule update
+
+install:
+  - |
+    if [ "$ARCH" = "x86" ]; then
+      ./waf.bat configure -T debug --32bits
+    else
+      ./waf.bat configure -T debug
+    fi
+
+script:
+  - ./waf.bat build
+
+before_cache:
+  - rm -f build/.lock-waf*
+  - rm -f .lock-waf*
