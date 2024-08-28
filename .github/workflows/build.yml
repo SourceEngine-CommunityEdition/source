@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-20.04, windows-2019, macos-latest]
+        os: [ubuntu-latest, windows-2019, macos-latest]
         arch: [i386, amd64, armv7a]
         dedicated: [false, true]
         exclude:
@@ -45,7 +45,8 @@ jobs:
       if: ${{ matrix.os == 'windows-2019' }}
       shell: powershell
       run: |
-        git submodule init && git submodule update
+        git submodule init
+        git submodule update
         if ($env:matrix_arch -eq "i386") {
           if ($env:matrix_dedicated -eq "true") {
             ./waf.bat configure -T debug --32bits -d
