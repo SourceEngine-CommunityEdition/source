@@ -43,10 +43,8 @@ jobs:
 
     - name: Build on Windows
       if: ${{ matrix.os == 'windows-2019' }}
-      shell: powershell
       run: |
-        git submodule init
-        git submodule update
+        git submodule init && git submodule update
         if ($env:matrix_arch -eq "i386") {
           if ($env:matrix_dedicated -eq "true") {
             ./waf.bat configure -T debug --32bits -d
