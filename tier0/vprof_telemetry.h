@@ -42,7 +42,7 @@ inline void TelemetrySetLevel( unsigned int Level ) {}
 //
 // Telemetry is enabled. Include the telemetry header.
 //
-#include "../../thirdparty/telemetry/include/telemetry.h"
+#include "../telemetry/include/telemetry.h"
 // Different versions of radbase.h define RADCOPYRIGHT to different values. So undef that here.
 #undef RADCOPYRIGHT
 
