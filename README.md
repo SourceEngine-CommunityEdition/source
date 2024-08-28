@@ -1,7 +1,7 @@
 # Source Engine: Community Edition
 
 [![Build Status](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/build.yml/badge.svg)](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/build.yml)
-[![Test Status](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/tests.yml/badge.svg)](https://github.com/SourceEngine-CommunityEdition/source/actions/workflows/tests.yml)
+[![Travis CI Status](https://api.travis-ci.com/SourceEngine-CommunityEdition/source.svg?branch=main)](https://github.com/SourceEngine-CommunityEdition/source/.travis.yml)
 
 ## Overview
 
